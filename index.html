@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peeter Piegaze — Documentation Systems Architect</title>
+<meta name="description" content="Peeter Piegaze designs and builds documentation systems and the AI agents that write docs on top of them. Head of Documentation at Union.ai; co-author of the JCR specification (JSR-170/283).">
+<meta property="og:title" content="Peeter Piegaze — Documentation Systems Architect">
+<meta property="og:description" content="Documentation systems, docs-as-code platforms and AI agents that write docs.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://piegaze.com/">
+<link rel="canonical" href="https://piegaze.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Peeter Piegaze",
+  "url": "https://piegaze.com/",
+  "email": "mailto:peeter@piegaze.com",
+  "sameAs": ["https://www.linkedin.com/in/peeter-piegaze-987bb578/"],
+  "jobTitle": "Head of Documentation",
+  "worksFor": {"@type": "Organization", "name": "Union.ai", "url": "https://www.union.ai/"},
+  "alumniOf": [
+    {"@type": "CollegeOrUniversity", "name": "University of Toronto"},
+    {"@type": "CollegeOrUniversity", "name": "Queen's University"}
+  ],
+  "knowsAbout": ["Documentation systems", "Docs-as-code", "LLM agents", "llms.txt", "Hugo", "Java Content Repository (JCR)"]
+}
+</script>
+<style>
+/* Layout: a single readable column; role headers put title left and dates right, stacking on phones. */
+:root {
+  --bg: #ffffff;
+  --fg: #1b1f24;
+  --muted: #5b6470;
+  --rule: #e3e6ea;
+  --accent: #24508f;
+  --tag-bg: #f2f4f7;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b;
+    --fg: #e6e9ed;
+    --muted: #9aa3ad;
+    --rule: #2a2f36;
+    --accent: #8db4ea;
+    --tag-bg: #1d2127;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 56px 72px;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+header { padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+h1 { font-size: 2.4rem; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+.headline { margin: 8px 0 18px; font-size: 1.15rem; color: var(--muted); }
+.contact { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; font-family: var(--font-mono); font-size: 0.88rem; }
+
+section { padding-top: 36px; }
+h2 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.summary p { margin: 0 0 12px; max-width: 65ch; }
+
+.role { padding: 4px 0 24px; }
+.role + .role { border-top: 1px solid var(--rule); padding-top: 24px; }
+.role-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
+h3 { font-size: 1.08rem; font-weight: 600; margin: 0; text-wrap: balance; }
+h3 .org { font-weight: 400; color: var(--muted); }
+.when { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.blurb { margin: 8px 0 0; color: var(--muted); max-width: 65ch; }
+.role ul { margin: 10px 0 0; padding-left: 1.2em; max-width: 65ch; }
+.role li { margin: 6px 0; }
+.role li ul { margin-top: 4px; }
+.role li li { margin: 2px 0; }
+.role .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--font-mono); font-size: 0.75rem; background: var(--tag-bg); border-radius: 4px; padding: 2px 8px; margin: 0; }
+
+.skills { display: grid; grid-template-columns: 12rem 1fr; gap: 10px 20px; margin: 0; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; min-width: 0; }
+
+.plain { list-style: none; margin: 0; padding: 0; }
+.plain li { margin: 0 0 8px; }
+.plain .when { margin-left: 6px; }
+
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  main { padding-block: 36px 56px; }
+  h1 { font-size: 2rem; }
+  .skills { grid-template-columns: 1fr; gap: 2px; }
+  .skills dd { margin-bottom: 12px; }
+}
+@media print {
+  :root { --bg: #fff; --fg: #000; --muted: #444; --rule: #ccc; --accent: #000; --tag-bg: #fff; }
+  body { font-size: 10.5pt; }
+  main { padding: 0; max-width: none; }
+  section { padding-top: 18px; }
+  .role { break-inside: avoid; }
+  a { text-decoration: none; }
+  .tags li { border: 1px solid #ccc; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Peeter Piegaze</h1>
+    <p class="headline">Documentation Systems Architect · Head of Documentation</p>
+    <ul class="contact">
+      <li><a href="mailto:peeter@piegaze.com">peeter@piegaze.com</a></li>
+      <li><a href="https://www.linkedin.com/in/peeter-piegaze-987bb578/">LinkedIn</a></li>
+    </ul>
+  </header>
+
+  <section class="summary" aria-labelledby="summary">
+    <h2 id="summary">Summary</h2>
+    <p>I design and build documentation systems, and the AI agents that write docs on top of them. At Union.ai I built the documentation platform for Flyte 2 and Union from the ground up, then built an agent that writes and maintains docs using it.</p>
+    <p>Before that I led documentation rewrites at Sonar and Unblu and built Adobe's publishing platform for AEM documentation. I co-authored and edited the Java Content Repository specification (JSR-170 and JSR-283), the foundation of Adobe Experience Manager. Over 25 years I have worked as a software engineer, API architect, specification author and documentation lead.</p>
+  </section>
+
+  <section aria-labelledby="experience">
+    <h2 id="experience">Experience</h2>
+
+    <article class="role">
+      <div class="role-head">
+        <h3>Head of Documentation <span class="org">· Union.ai</span></h3>
+        <span class="when">2023–present · Remote</span>
+      </div>
+      <p class="blurb">Union.ai is a durable AI runtime built on open-source Flyte. Teams use it to turn their data into models, agents and apps in plain Python, on infrastructure they control.</p>
+      <ul>
+        <li><strong>Built the docs system.</strong> Designed and built Union.ai's docs-as-code platform on Hugo, with:
+          <ul>
+            <li>Multi-variant, single-source conditional rendering.</li>
+            <li>Versioning.</li>
+            <li>API, CLI and Helm reference generated from source.</li>
+            <li>Code examples embedded from tested source files.</li>
+            <li>Search and Ask AI scoped to the reader's version.</li>
+            <li>LLM-readable rendering: a Markdown twin of every page, plus llms.txt and llms-full.txt.</li>
+          </ul>
+        </li>
+        <li><strong>Built a docs-writing agent on top.</strong> Built an AI agent that works on top of the docs system, drawing on a range of tools, to write and update documentation, and to support Q&amp;A, doc review and tracking of upstream SDK changes.</li>
+      </ul>
+      <ul class="tags" aria-label="Technologies">
+        <li>Hugo</li><li>Docs-as-code</li><li>GitHub Actions</li><li>Python</li><li>LLM agents</li><li>Claude</li><li>llms.txt</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <h3>Head of Documentation <span class="org">· Sonar (SonarSource)</span></h3>
+        <span class="when">2020–2022 · Geneva</span>
+      </div>
+      <ul>
+        <li>Led a complete rewrite of the docs for SonarCloud, a static analysis service that integrates with GitHub, GitLab and other DevOps platforms, as part of a new onboarding experience.</li>
+        <li>Designed the information architecture and user journeys, and worked with the UX team on in-product guidance.</li>
+      </ul>
+      <ul class="tags" aria-label="Technologies">
+        <li>Information architecture</li><li>User journeys</li><li>In-product guidance</li><li>Docs-as-code</li><li>Markdown</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <h3>Documentation Author and Evangelist <span class="org">· Unblu</span></h3>
+        <span class="when">2019–2020 · Basel</span>
+      </div>
+      <ul>
+        <li>Rewrote the product and technical documentation for Unblu, a secure video, chat and co-browsing platform for financial services.</li>
+        <li>Re-architected the documentation publishing system.</li>
+      </ul>
+      <ul class="tags" aria-label="Technologies">
+        <li>AsciiDoc</li><li>Docs-as-code</li><li>Java</li><li>Kubernetes</li><li>Docker</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <h3>Senior Computer Scientist and Senior Engineer <span class="org">· Adobe</span></h3>
+        <span class="when">2010–2018 · Basel</span>
+      </div>
+      <ul>
+        <li>Designed and built the authoring and publishing system for the public Adobe Experience Manager (AEM) documentation, using AEM itself.</li>
+        <li>Created developer education material for AEM, including complete sample projects with code and documentation.</li>
+        <li>Built a Go back-end service with a REST API that aggregated data from legacy databases and messaging systems to personalize in-product help across Adobe Experience Cloud.</li>
+        <li>Integrated Adobe's internal marketing-permissions service with Adobe Campaign for GDPR compliance.</li>
+      </ul>
+      <ul class="tags" aria-label="Technologies">
+        <li>AEM</li><li>Java</li><li>Sling</li><li>Go</li><li>MongoDB</li><li>REST</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role-head">
+        <h3>Senior Engineer <span class="org">· Day Software</span></h3>
+        <span class="when">2000–2010 · Basel</span>
+      </div>
+      <ul>
+        <li>Co-authored and edited the Content Repository API for Java (JCR, JSR-170 and JSR-283), a Java Community Process standard. JCR is the basis of Apache Jackrabbit, Day CQ and Adobe Experience Manager.</li>
+        <li>Developed Day CQ, the predecessor of Adobe Experience Manager, and presented JCR at industry events.</li>
+      </ul>
+      <ul class="tags" aria-label="Skills">
+        <li>Data modelling</li><li>Java API design</li><li>Specification writing</li><li>Industry evangelism</li>
+      </ul>
+    </article>
+  </section>
+
+  <section aria-labelledby="skills">
+    <h2 id="skills">Skills</h2>
+    <dl class="skills">
+      <dt>Documentation systems</dt>
+      <dd>Docs-as-code, information architecture, Hugo, AsciiDoc, Markdown, CI publishing with GitHub Actions</dd>
+      <dt>AI for documentation</dt>
+      <dd>LLM agents (Claude), llms.txt, AI search and Q&amp;A (Kapa.ai, Inkeep, Algolia, Meilisearch)</dd>
+      <dt>Engineering</dt>
+      <dd>Python, Go, Java, JavaScript, HTML and CSS, REST and Java API design, Git and GitHub</dd>
+      <dt>Domains</dt>
+      <dd>AI infrastructure and workflow orchestration (Flyte), static analysis, content management (JCR, AEM)</dd>
+    </dl>
+  </section>
+
+  <section aria-labelledby="education">
+    <h2 id="education">Education</h2>
+    <ul class="plain">
+      <li><strong>MSc in Computer Science</strong>, University of Toronto <span class="when">1998–2000</span></li>
+      <li><strong>MA in Philosophy</strong> (philosophy of mind and language), Queen's University, Kingston <span class="when">1994–1996</span></li>
+      <li><strong>BSc in Cognitive Science and Artificial Intelligence</strong>, University of Toronto <span class="when">1988–1993</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="languages">
+    <h2 id="languages">Languages and work authorization</h2>
+    <ul class="plain">
+      <li><strong>Languages:</strong> English (native), French (good working knowledge)</li>
+      <li><strong>Work authorization:</strong> Switzerland, the EU and EEA, and Canada</li>
+    </ul>
+  </section>
+
+  <footer>Based in Valais, Switzerland.</footer>
+</main>
+</body>
+</html>
